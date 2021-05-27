@@ -27,6 +27,7 @@ export class BreakDownPage implements OnInit {
   }
 
   ionViewDidEnter(){
+    debugger
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       debugger
       console.log("Back press handler!");
@@ -100,18 +101,28 @@ export class BreakDownPage implements OnInit {
       //   console.log(err);
 
       // })
-
+      debugger
       this.imagePicker.getPictures({ 
          maximumImagesCount: 15,
          outputType: 1
         }).then((results) => {
-        for (var i = 0; i < results.length; i++) {
 
+          if(results=="OK")
+          {
 
-          this.images.push("data:image/jpeg;base64," + results[i])
+          }
+          else {
 
-            console.log('Image URI: ' + results[i]);
-        }
+            for (var i = 0; i < results.length; i++) {
+              debugger
+      
+                this.images.push("data:image/jpeg;base64," + results[i])
+      
+                  console.log('Image URI: ' + results[i]);
+              }
+
+          }
+
       }, (err) => { });
     
 

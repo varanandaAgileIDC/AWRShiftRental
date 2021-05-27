@@ -15,6 +15,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Pedometer } from '@ionic-native/pedometer/ngx';
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
+
 
 
 @NgModule({
@@ -31,6 +37,10 @@ import { Camera } from '@ionic-native/camera/ngx';
     ImagePicker,
     PhotoViewer,
     Camera,
+    Pedometer,
+    DeviceMotion,
+    LocationAccuracy,
+    AndroidPermissions,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

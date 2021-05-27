@@ -20,11 +20,15 @@
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
     "@capacitor/core": "2.4.0",
+    "@ionic-native/android-permissions": "^5.33.0",
     "@ionic-native/camera": "^5.33.0",
     "@ionic-native/core": "^5.0.7",
+    "@ionic-native/device-motion": "^5.33.0",
     "@ionic-native/fcm": "^5.33.0",
     "@ionic-native/geolocation": "^5.33.0",
     "@ionic-native/image-picker": "^5.33.0",
+    "@ionic-native/location-accuracy": "^5.33.0",
+    "@ionic-native/pedometer": "^5.33.0",
     "@ionic-native/photo-viewer": "^5.33.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
@@ -48,14 +52,18 @@
     "codelyzer": "^5.1.2",
     "com-sarriaroman-photoviewer": "^1.2.5",
     "cordova-android": "^9.1.0",
+    "cordova-plugin-android-permissions": "^1.1.2",
     "cordova-plugin-androidx": "^3.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-camera": "^5.0.2",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-device-motion": "^2.0.1",
     "cordova-plugin-fcm-with-dependecy-updated": "^7.8.0",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
+    "cordova-plugin-pedometer": "^0.4.1",
+    "cordova-plugin-request-location-accuracy": "^2.3.0",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-telerik-imagepicker": "^2.3.3",
@@ -99,7 +107,13 @@
         "ANDROID_GOOGLE_SERVICES_VERSION": "4.3.4",
         "ANDROID_GRADLE_TOOLS_VERSION": "4.1.0"
       },
-      "cordova-plugin-x-toast": {}
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-device-motion": {},
+      "cordova-plugin-pedometer": {},
+      "cordova-plugin-request-location-accuracy": {
+        "PLAY_SERVICES_LOCATION_VERSION": "16.+"
+      },
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "android"

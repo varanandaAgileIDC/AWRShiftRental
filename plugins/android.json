@@ -53,6 +53,19 @@
     },
     "cordova-plugin-x-toast": {
       "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-pedometer": {
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "16.+",
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.agile.awr.app"
     }
   },
   "dependent_plugins": {}

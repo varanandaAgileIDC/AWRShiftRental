@@ -9,7 +9,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -23,7 +23,7 @@
               }
             },
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -80,6 +80,18 @@
             },
             {
               "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Accelerometer\"><param name=\"android-package\" value=\"org.apache.cordova.devicemotion.AccelListener\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Pedometer\"><param name=\"android-package\" value=\"org.apache.cordova.pedometer.PedoListener\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Permissions\"><param name=\"android-package\" value=\"com.android.plugins.Permissions\" /></feature>",
               "count": 1
             }
           ]
@@ -179,6 +191,10 @@
             {
               "xml": "<feature name=\"IonicWebView\"><param name=\"android-package\" value=\"com.ionicframework.cordova.webview.IonicWebView\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"RequestLocationAccuracy\"><param name=\"android-package\" value=\"cordova.plugin.RequestLocationAccuracy\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -231,6 +247,19 @@
       "PACKAGE_NAME": "com.agile.awr.app"
     },
     "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-device-motion": {
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-pedometer": {
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "16.+",
+      "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.agile.awr.app"
     }
   },
@@ -353,6 +382,46 @@
       "clobbers": [
         "window.plugins.toast"
       ]
+    },
+    {
+      "id": "cordova-plugin-device-motion.Acceleration",
+      "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
+      "pluginId": "cordova-plugin-device-motion",
+      "clobbers": [
+        "Acceleration"
+      ]
+    },
+    {
+      "id": "cordova-plugin-device-motion.accelerometer",
+      "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
+      "pluginId": "cordova-plugin-device-motion",
+      "clobbers": [
+        "navigator.accelerometer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-pedometer.Pedometer",
+      "file": "plugins/cordova-plugin-pedometer/www/pedometer.js",
+      "pluginId": "cordova-plugin-pedometer",
+      "clobbers": [
+        "pedometer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+      "file": "plugins/cordova-plugin-request-location-accuracy/www/android/RequestLocationAccuracy.js",
+      "pluginId": "cordova-plugin-request-location-accuracy",
+      "clobbers": [
+        "cordova.plugins.locationAccuracy"
+      ]
+    },
+    {
+      "id": "cordova-plugin-android-permissions.Permissions",
+      "file": "plugins/cordova-plugin-android-permissions/www/permissions.js",
+      "pluginId": "cordova-plugin-android-permissions",
+      "clobbers": [
+        "cordova.plugins.permissions"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -368,6 +437,10 @@
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-telerik-imagepicker": "2.3.3",
     "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-x-toast": "2.7.2"
+    "cordova-plugin-x-toast": "2.7.2",
+    "cordova-plugin-device-motion": "2.0.1",
+    "cordova-plugin-pedometer": "0.4.1",
+    "cordova-plugin-request-location-accuracy": "2.3.0",
+    "cordova-plugin-android-permissions": "1.1.2"
   }
 }

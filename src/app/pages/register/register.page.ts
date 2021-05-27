@@ -69,9 +69,12 @@ export class RegisterPage implements OnInit {
 
     this.registerForm1 = this.formBuilder.group(
       {
-        contactName: ["", Validators.required],
-        contactTitle: ["", Validators.nullValidator],
+        firstName: ["", Validators.required],
+        lastName: ["", Validators.required],
+        // contactName: ["", Validators.required],
+        // contactTitle: ["", Validators.nullValidator],
         position: ["", Validators.required],
+        debitorCode: ["", Validators.nullValidator],
         email: [
           "",
           [
@@ -111,6 +114,7 @@ export class RegisterPage implements OnInit {
             Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
           ],
         ],
+        debitorCode: ["", Validators.nullValidator],
         password: ["", [Validators.required, Validators.minLength(8)]],
         confirmPassword: ["", Validators.required],
         address: ["", Validators.required],
@@ -263,9 +267,12 @@ export class RegisterPage implements OnInit {
      PostData = {
 
     customer_type:this.layoutChange,
-    // first_name: this.prefix +" "+ formData.firstName,
-    // last_name:formData.lastName,
-    mobile:this.mobileCode +" "+ formData.mobile,
+    salutation:this.prefix,
+    first_name:formData.firstName,
+    last_name:formData.lastName,
+    debitor_code:formData.debitorCode,
+    mobile_code:this.mobileCode,
+    mobile:formData.mobile,
     email:formData.email,
     nationality:this.nationality,
     address:formData.address,
@@ -274,8 +281,8 @@ export class RegisterPage implements OnInit {
     smsemail:this.smsemail,
     termsandconditions:this.terms,
     newsletter:this.newsletter,
-    contact_name:formData.contactName,
-    contact_title:formData.contactTitle,
+    // contact_name:formData.contactName,
+    // contact_title:formData.contactTitle,
     company_name:formData.companyName,
     position:formData.position
 
@@ -287,9 +294,12 @@ else
   PostData = {
 
     customer_type:this.layoutChange,
-    first_name: this.prefix +" "+ formData.firstName,
+    salutation:this.prefix,
+    first_name:formData.firstName,
     last_name:formData.lastName,
-    mobile:this.mobileCode +" "+ formData.mobile,
+    debitor_code:formData.debitorCode,
+    mobile_code:this.mobileCode,
+    mobile:formData.mobile,
     email:formData.email,
     nationality:this.nationality,
     address:formData.address,

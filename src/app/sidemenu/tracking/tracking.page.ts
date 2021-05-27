@@ -4,6 +4,8 @@ import { Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 declare var google;
 
@@ -30,7 +32,7 @@ export class TrackingPage implements OnInit {
 
   constructor(private platform:Platform,
     private router:Router,
-    private geolocation:Geolocation) { }
+    private geolocation:Geolocation, private locationAccuracy:LocationAccuracy, private androidPerm:AndroidPermissions) { }
 
   ngOnInit() {
 
@@ -81,6 +83,7 @@ export class TrackingPage implements OnInit {
         debugger;
 
         this.previousTracks = tracksDB;
+        debugger
       }
     
   }

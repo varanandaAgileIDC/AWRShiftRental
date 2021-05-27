@@ -112,5 +112,37 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-device-motion": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device-motion"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-pedometer": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-pedometer"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-request-location-accuracy": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-request-location-accuracy"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-android-permissions": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-android-permissions"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
