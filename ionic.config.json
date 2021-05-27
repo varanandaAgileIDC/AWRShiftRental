@@ -1,0 +1,8 @@
+{
+  "name": "AWR-ShiftCarRental",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

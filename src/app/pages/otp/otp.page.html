@@ -1,0 +1,71 @@
+
+<div>
+  <img src="../../../assets/login-banner.png" style="margin-top: -2px;"/>
+</div>
+
+<ion-content>
+
+  <h5>Let's Go Anywhere, Anytime</h5>
+
+ <b> <p style="font-size: 18px;color: black;">Enter verification code</p></b>
+  <p style="font-size: 16px;">The OTP has been sent to your registered email address</p>
+
+  <div class="input-group">
+
+    <ion-grid>
+      <ion-row style="padding: 10px;">
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="one" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="two" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="three" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="four" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="five" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="input-field">
+            <ion-item>
+              <ion-input type="tel" [(ngModel)]="six" maxlength="1"></ion-input>
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    </div>
+
+    <p style="font-size: 16px;">Didn't get the OTP? <u style="color:#1D97DB;" (click)="resendOtp()">Resend</u></p>
+<div style="text-align: center;">
+  <ion-button class="validateBtn" (click)="otpValidate()" >Continue</ion-button>
+</div>
+    
+
+</ion-content>
+
