@@ -33,7 +33,7 @@ export class EditProfilePage {
 
   ionViewDidEnter(){
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+     
       console.log("Back press handler!");
      this.router.navigate(["/tabs"]);
     });

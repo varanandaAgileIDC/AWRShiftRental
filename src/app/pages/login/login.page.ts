@@ -39,14 +39,13 @@ export class LoginPage implements OnInit {
    }
 
   ionViewDidEnter(){
-    debugger
+   
     //this.register();
     // this.otp();
     // this.awr();
 
-debugger
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+      
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/login")
       {
@@ -61,19 +60,19 @@ debugger
   }
 
   onSubmit() {
-    debugger
+   
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     } else {
-      debugger
+    
       console.log(this.loginForm.value);
       this.login(this.loginForm.value);
     }
   }
 
   login(formData) {
-    debugger
+  
     let PostData = {
       email:formData.email,
       password:formData.password,
@@ -81,7 +80,7 @@ debugger
     }
 
     this.apiService.postMethod("api/login?",PostData).then((response) => {
-      debugger;
+ 
       console.log(response);
 
       if(response["userdata"].status==0)
@@ -97,7 +96,7 @@ debugger
 
       },
       (error) => {
-      debugger;
+     
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

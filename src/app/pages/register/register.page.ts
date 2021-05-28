@@ -138,7 +138,7 @@ export class RegisterPage implements OnInit {
   ionViewDidEnter(){
    
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+   
       console.log("Back press handler!");
       this.router.navigateByUrl('/login');
     });
@@ -153,7 +153,7 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit1() {
-    debugger
+    
     this.submitted = true;
     if (this.registerForm1.invalid) {
 
@@ -162,7 +162,7 @@ export class RegisterPage implements OnInit {
       } 
       return;
     } else {
-      debugger
+   
       console.log(this.registerForm1.value);
 
       if (!this.termStatus) {
@@ -178,7 +178,7 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit2() {
-    debugger
+   
     this.submitted = true;
     if (this.registerForm2.invalid) {
 
@@ -187,7 +187,7 @@ export class RegisterPage implements OnInit {
       } 
       return;
     } else {
-      debugger
+      
       console.log(this.registerForm2.value);
 
       if (!this.termStatus) {
@@ -204,7 +204,7 @@ export class RegisterPage implements OnInit {
 
   segmentChanged(event)
   {
-    debugger
+   
     console.log(event.target.value);
     this.layoutChange = event.target.value;
   }
@@ -259,7 +259,7 @@ export class RegisterPage implements OnInit {
   }
 
   register(formData) {
-    debugger
+  
     let PostData;
     if(this.layoutChange=="corporate")
     {
@@ -312,9 +312,9 @@ else
   }
 
 }
-debugger
+
     this.apiService.postMethod("api/register?",PostData).then((response) => {
-      debugger;
+      
       console.log(response);
 
       if(response['status']=='S')
@@ -332,7 +332,7 @@ debugger
 
       },
       (error) => {
-      debugger;
+     
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

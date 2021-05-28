@@ -17,7 +17,6 @@ export class Tab1Page {
 
   ionViewDidEnter(){
 
-    debugger
     let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
         if(loginDB)
         {
@@ -27,7 +26,7 @@ export class Tab1Page {
         }
    
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+      
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/tabs/tab1")
       {

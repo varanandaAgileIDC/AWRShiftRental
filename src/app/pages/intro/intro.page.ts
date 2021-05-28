@@ -15,7 +15,7 @@ export class IntroPage implements OnInit {
   ngOnInit() {
     setTimeout( ()=>{
 
-      debugger
+    
       let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
         if(loginDB)
         {

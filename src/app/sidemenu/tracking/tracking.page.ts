@@ -27,6 +27,11 @@ export class TrackingPage implements OnInit {
   isTracking = false;
   trackedRoute = [];
   previousTracks = [];
+  
+  matrixDistance:any;
+  matrixTime:any;
+  distanceStr:any;
+
  
   positionSubscription: Subscription;
 
@@ -50,7 +55,7 @@ export class TrackingPage implements OnInit {
  
       this.geolocation.getCurrentPosition().then(pos => {
 
-        debugger;
+      
          
         let latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         this.map.setCenter(latLng);
@@ -58,16 +63,54 @@ export class TrackingPage implements OnInit {
 
       }).catch((error) => {
 
-        debugger;
+        
 
         console.log('Error getting location', error);
       });
     });
+
+   // Locations of landmarks
+   const dakota = {lat:12.991992, lng:76.104787};
+   const frick = {lat:13.056618, lng:76.264898};
+
+  const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+  const matrixOptions = {
+    origins: [dakota], // technician locations
+    destinations: [frick], // customer address
+    travelMode: 'DRIVING',
+    unitSystem: google.maps.UnitSystem.IMPERIAL
+  };
+  
+  // Call Distance Matrix service
+ let matrixDetails =  service.getDistanceMatrix(matrixOptions, callback);
+ 
+
+  // Callback function used to process Distance Matrix response
+  function callback(response, status) {
+  
+    console.log(response);  
+    if (status !== "OK") {
+      alert("Error with distance matrix");
+      return;
+    }
+    else
+    {
+    
+      this.distanceStr  = response["rows"][0]["elements"][0]["distance"]["text"]; 
+      let matrixDistance = this.distanceStr.replace("mi","");
+      let number = Number(matrixDistance);
+      this.matrixDistance = (number * 1.6093).toFixed(2);
+      this.matrixTime = response["rows"][0]["elements"][0]["duration"]["text"]; 
+      console.log(matrixDistance);    
+    }
+          
+  }
+
   }
 
   ionViewDidEnter(){
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+   
       console.log("Back press handler!");
      this.router.navigate(["/tabs"]);
     });
@@ -79,11 +122,7 @@ export class TrackingPage implements OnInit {
     let tracksDB = JSON.parse(localStorage.getItem("routes"));
  
       if (tracksDB) {
-
-        debugger;
-
         this.previousTracks = tracksDB;
-        debugger
       }
     
   }
@@ -99,8 +138,6 @@ export class TrackingPage implements OnInit {
       )
       .subscribe(data => {
 
-        debugger;
-
         setTimeout(() => {
           this.trackedRoute.push({ lat: data['coords'].latitude, lng: data['coords'].longitude });
           this.redrawPath(this.trackedRoute);
@@ -110,8 +147,6 @@ export class TrackingPage implements OnInit {
   }
  
   redrawPath(path) {
-
-    debugger;
 
     if (this.currentMapTrack) {
       this.currentMapTrack.setMap(null);
@@ -124,8 +159,6 @@ export class TrackingPage implements OnInit {
       console.log('destination',path[path.length-1].lat,path[path.length-1].lng)
 
      this.distance =  this.getDistanceFromLatLonInKm(path[0].lat,path[0].lng,path[path.length-1].lat,path[path.length-1].lng) + 'km';
-
-      debugger;
 
       this.currentMapTrack = new google.maps.Polyline({
         path: path,

@@ -31,12 +31,12 @@ export class ApiService {
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
-    debugger
+  
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
     } else {
-      debugger
+     
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       console.error(
@@ -54,8 +54,6 @@ export class ApiService {
     // Get response
     getRequest(item): Observable<any> {
 
-      debugger;
-
       return this.http
         .get<any>(this.base_path + JSON.stringify(item), this.httpOptions)
         .pipe(
@@ -65,7 +63,7 @@ export class ApiService {
     }
 
     postRequest (service,data): Observable<object> {
-      debugger
+     
       return this.http.post<object>(this.base_path+service,data,this.httpOptions)
         .pipe(
           retry(),
@@ -78,13 +76,13 @@ export class ApiService {
       return new Promise((resolve, reject) => {
         this.showLoader();
         this.http.post(this.base_path+service,data).subscribe(response => {
-        debugger
+      
         this.hideLoader();
         resolve(response);
         },
         (error) =>
         {
-          debugger
+         
           this.hideLoader();
           reject(error);
         });

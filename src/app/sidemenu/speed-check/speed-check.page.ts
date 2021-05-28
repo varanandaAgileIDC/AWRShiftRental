@@ -67,7 +67,7 @@ export class SpeedCheckPage implements OnInit {
     this.pedometer
       .isDistanceAvailable()
       .then((available: boolean) => {
-        debugger;
+      
 
         console.log(available);
       })
@@ -76,7 +76,7 @@ export class SpeedCheckPage implements OnInit {
       });
 
     this.pedometer.startPedometerUpdates().subscribe((data: IPedometerData) => {
-      debugger;
+      
 
       console.log(data);
 
@@ -88,7 +88,7 @@ export class SpeedCheckPage implements OnInit {
     this.deviceMotion.getCurrentAcceleration().then(
       (acceleration: DeviceMotionAccelerationData) => console.log(acceleration),
       (error: any) => {
-        debugger;
+     
 
         console.log(error);
       }
@@ -99,7 +99,7 @@ export class SpeedCheckPage implements OnInit {
     var subscription = this.deviceMotion
       .watchAcceleration()
       .subscribe((acceleration: DeviceMotionAccelerationData) => {
-        debugger;
+    
 
         console.log(acceleration);
 
@@ -136,7 +136,7 @@ export class SpeedCheckPage implements OnInit {
 
   ionViewDidEnter() {
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger;
+    
       console.log("Back press handler!");
       this.router.navigate(["/tabs"]);
     });
@@ -145,11 +145,11 @@ export class SpeedCheckPage implements OnInit {
   fnGetPedoUpdate() {
     // if (this.platformCtrl.is('android')) {
     this.pedometer.startPedometerUpdates().subscribe((PedometerData) => {
-      debugger;
+      
 
       this.PedometerData = PedometerData;
       this.ngZoneCtrl.run(() => {
-        debugger;
+     
 
         this.stepCount = "Stepcount is : " + this.PedometerData.numberOfSteps;
         this.distance =
@@ -169,7 +169,7 @@ export class SpeedCheckPage implements OnInit {
   }
 
   fnStopPedoUpdate() {
-    debugger;
+   
     this.pedometer.stopPedometerUpdates();
     this.start = false;
   }

@@ -23,7 +23,7 @@ export class DocumentScanPage implements OnInit {
   }
   ionViewDidEnter() {
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger;
+     
       console.log("Back press handler!");
       this.router.navigate(["/tabs"]);
     });
@@ -42,16 +42,12 @@ export class DocumentScanPage implements OnInit {
 this.scanner.scanDoc(opts)
   .then((res: string) =>{
 
-    debugger;
-
     this.image = "data:image/jpeg;base64," + res;
 
      console.log(res)
 
     })
   .catch((error: any) => {
-
-    debugger;
     
     console.error(error)
 
@@ -72,16 +68,12 @@ this.scanner.scanDoc(opts)
 this.scanner.scanDoc(opts)
   .then((res: string) =>{
 
-    debugger;
-
     this.image = "data:image/jpeg;base64," + res;
 
      console.log(res)
 
     })
   .catch((error: any) => {
-
-    debugger;
     
     console.error(error)
 

@@ -34,7 +34,7 @@ export class OtpPage implements OnInit {
   }
   ionViewDidEnter(){
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+      
       console.log("Back press handler!");
      this.router.navigate(["/register"]);
     });
@@ -48,7 +48,7 @@ export class OtpPage implements OnInit {
     }
 
     this.apiService.postMethod("api/resendotp?",PostData).then((response) => {
-      debugger;
+   
       console.log(response);
 
       if(response['status']=='S')
@@ -57,7 +57,7 @@ export class OtpPage implements OnInit {
 
       },
       (error) => {
-      debugger;
+    
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });
@@ -67,7 +67,6 @@ export class OtpPage implements OnInit {
 
 
   otpValidate() {
-    debugger
 
     let otpConcat = this.one+this.two+this.three+this.four+this.five+this.six;
 
@@ -80,7 +79,7 @@ export class OtpPage implements OnInit {
     }
 
     this.apiService.postMethod("api/validateotp?",PostData).then((response) => {
-      debugger;
+   
       console.log(response);
 
       if(response['status']=='S')
@@ -96,7 +95,7 @@ export class OtpPage implements OnInit {
 
       },
       (error) => {
-      debugger;
+  
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

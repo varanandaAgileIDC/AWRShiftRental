@@ -27,9 +27,9 @@ export class BreakDownPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    debugger
+   
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      debugger
+      
       console.log("Back press handler!");
      this.router.navigate(["/tabs"]);
     });
@@ -101,7 +101,7 @@ export class BreakDownPage implements OnInit {
       //   console.log(err);
 
       // })
-      debugger
+     
       this.imagePicker.getPictures({ 
          maximumImagesCount: 15,
          outputType: 1
@@ -114,7 +114,6 @@ export class BreakDownPage implements OnInit {
           else {
 
             for (var i = 0; i < results.length; i++) {
-              debugger
       
                 this.images.push("data:image/jpeg;base64," + results[i])
       
@@ -146,8 +145,6 @@ export class BreakDownPage implements OnInit {
        // If it's base64 (DATA_URL):
   
        console.log(imageData);
-  
-       debugger;
       
   
        if(imageData==null || imageData=="")

@@ -33,17 +33,17 @@ export class AppComponent {
       this.fcm.getToken().then((token) => {
         console.log("ios fcm key check", token);
         this.fcm.getInitialPushPayload().then((data) => {
-          debugger;
+         
           console.log("ios fcm key check", data);
         });
       });
       this.fcm.onTokenRefresh().subscribe((token) => {
-        debugger;
+       
         console.log("fcm token", token);
       });
 
       this.fcm.onNotification().subscribe((data) => {
-        debugger
+       
         console.log("data",data);
       });
   
