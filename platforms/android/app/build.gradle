@@ -146,6 +146,7 @@ apply from: "../com-sarriaroman-photoviewer/app-photoviewer.gradle"
 apply from: "../cordova-plugin-fcm-with-dependecy-updated/app-FCMPlugin.gradle"
 apply from: "../cordova-plugin-telerik-imagepicker/app-ignorelinterrors.gradle"
 apply from: "../cordova-plugin-telerik-imagepicker/app-androidtarget.gradle"
+apply from: "../cordova-plugin-document-scanner/app-build.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()

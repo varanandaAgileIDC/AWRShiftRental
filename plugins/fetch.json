@@ -144,5 +144,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-document-scanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-document-scanner"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

@@ -84,6 +84,10 @@ export class AppComponent {
   {
     this.router.navigate(["/speed-check"]);
   }
+  documentScan()
+  {
+    this.router.navigate(["/document-scan"]);
+  }
 
   logOut()
   {

@@ -66,6 +66,9 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-document-scanner": {
+      "PACKAGE_NAME": "com.agile.awr.app"
     }
   },
   "dependent_plugins": {}

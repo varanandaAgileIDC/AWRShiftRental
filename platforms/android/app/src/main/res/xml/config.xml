@@ -43,6 +43,9 @@
     <feature name="Permissions">
         <param name="android-package" value="com.android.plugins.Permissions" />
     </feature>
+    <feature name="Scan">
+        <param name="android-package" value="com.neutrinos.plugin.Scan" />
+    </feature>
     <platform name="android">
         <preference name="AndroidXEnabled" value="true" />
     </platform>
@@ -61,7 +64,7 @@
     <name>AWR</name>
     <description>Car Rental App..</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -69,6 +72,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://localhost:8100" sessionid="62459898" />
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
         <application android:networkSecurityConfig="@xml/network_security_config" />
         <application android:requestLegacyExternalStorage="true" />

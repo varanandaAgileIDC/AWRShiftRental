@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'break-down',
     loadChildren: () => import('./sidemenu/break-down/break-down.module').then( m => m.BreakDownPageModule)
+  },
+  {
+    path: 'document-scan',
+    loadChildren: () => import('./sidemenu/document-scan/document-scan.module').then( m => m.DocumentScanPageModule)
   }
 ];
 @NgModule({

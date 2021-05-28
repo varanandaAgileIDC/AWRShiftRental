@@ -9,7 +9,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -23,7 +23,7 @@
               }
             },
             {
-              "xml": "<application android:networkSecurityConfig=\"@xml/network_security_config\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -92,6 +92,10 @@
             },
             {
               "xml": "<feature name=\"Permissions\"><param name=\"android-package\" value=\"com.android.plugins.Permissions\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Scan\"><param name=\"android-package\" value=\"com.neutrinos.plugin.Scan\" /></feature>",
               "count": 1
             }
           ]
@@ -261,6 +265,9 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-document-scanner": {
+      "PACKAGE_NAME": "com.agile.awr.app"
     }
   },
   "dependent_plugins": {},
@@ -422,6 +429,14 @@
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "id": "cordova-plugin-document-scanner.scan",
+      "file": "plugins/cordova-plugin-document-scanner/www/scan.js",
+      "pluginId": "cordova-plugin-document-scanner",
+      "clobbers": [
+        "scan"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -441,6 +456,7 @@
     "cordova-plugin-device-motion": "2.0.1",
     "cordova-plugin-pedometer": "0.4.1",
     "cordova-plugin-request-location-accuracy": "2.3.0",
-    "cordova-plugin-android-permissions": "1.1.2"
+    "cordova-plugin-android-permissions": "1.1.2",
+    "cordova-plugin-document-scanner": "4.2.6"
   }
 }

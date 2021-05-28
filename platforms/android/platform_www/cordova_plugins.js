@@ -157,6 +157,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "id": "cordova-plugin-document-scanner.scan",
+      "file": "plugins/cordova-plugin-document-scanner/www/scan.js",
+      "pluginId": "cordova-plugin-document-scanner",
+      "clobbers": [
+        "scan"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -176,6 +184,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-device-motion": "2.0.1",
     "cordova-plugin-pedometer": "0.4.1",
     "cordova-plugin-request-location-accuracy": "2.3.0",
-    "cordova-plugin-android-permissions": "1.1.2"
+    "cordova-plugin-android-permissions": "1.1.2",
+    "cordova-plugin-document-scanner": "4.2.6"
   };
 });
