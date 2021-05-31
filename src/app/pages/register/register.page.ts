@@ -316,7 +316,7 @@ else
     this.apiService.postMethod("api/register?",PostData).then((response) => {
       
       console.log(response);
-debugger
+
       if(response['status']=='S')
       {
 

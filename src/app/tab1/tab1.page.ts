@@ -5,6 +5,7 @@ import { AlertController, ModalController, Platform } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { MapPage } from '../modals/map/map.page';
 import { ApiService } from '../services/api.service';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-tab1',
@@ -13,9 +14,12 @@ import { ApiService } from '../services/api.service';
 })
 export class Tab1Page {
 
-  fromField:any;
-  fromDate:any;
-  fromSelectedDate:any;
+  startField:any;
+  startDate:any;
+
+  endField:any;
+  endDate:any;
+  
 
   constructor(private platform:Platform,
     private router:Router,
@@ -131,16 +135,22 @@ export class Tab1Page {
                 "Please select today or future date"
               );
             } else {
-              this.fromDate = response;
+              this.startDate = response;
   
-           var d = (this.fromDate.getDate() < 10 ? '0' : '') + this.fromDate.getDate();
-           var m = this.getMonth( this.fromDate);
-           var y = this.fromDate.getFullYear();
-  
-           this.fromSelectedDate = y + "-" + m + "-" + d;
-         
-           this.fromField = this.fromSelectedDate;
-  
+          //  var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
+          //  var m = this.getMonth( this.startDate);
+          //  var y = this.startDate.getFullYear();
+          //  this.startSelectedDate = d + "-" + m + "-" + y;
+
+           let newDate = moment(response, "MM:DD:YYYY");
+           let momentDate = newDate.format("MMM DD YYYY")
+
+           let time = moment(response, "HH-MM A");
+           let momentTime = time.format("hh:mm a");
+
+           this.startField = momentDate + ", " + momentTime; 
+           
+
             }
   
           },
@@ -148,8 +158,62 @@ export class Tab1Page {
             console.log("error response", error);
           }
         );
-    
+  }
+
+
+  endTrip()
+  {
+   
+      this.datePicker
+        .show({
+          date: new Date(),
+          mode: "date",
+          minDate: this.platform.is("android")
+            ? new Date()
+            : new Date().valueOf(),
+          allowOldDates: false,
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT,
+        })
+        .then(
+          (response) => {
+            let date = new Date();
   
+            let month = response.getMonth()+1;
+            let month1 = date.getMonth()+1;
+  
+            if (response.getDate() == date.getDate() && month==month1)
+            {
+              response = date;
+            }
+  
+            if (response < date) {
+              this.apiService.nativeToast(
+                "Please select today or future date"
+              );
+            } else {
+              this.endDate = response;
+  
+          //  var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
+          //  var m = this.getMonth( this.startDate);
+          //  var y = this.startDate.getFullYear();
+          //  this.startSelectedDate = d + "-" + m + "-" + y;
+
+           let newDate = moment(response, "MM:DD:YYYY");
+           let momentDate = newDate.format("MMM DD YYYY")
+
+           let time = moment(response, "HH-MM A");
+           let momentTime = time.format("hh:mm a");
+
+           this.endField = momentDate + ", " + momentTime; 
+          
+
+            }
+  
+          },
+          (error) => {
+            console.log("error response", error);
+          }
+        );
   }
 
   getMonth(date) {

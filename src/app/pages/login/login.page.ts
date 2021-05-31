@@ -161,6 +161,84 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+  forgotPassword() {
+    this.alertCtrl.create({
+      //header: 'Prompt Alert',
+      subHeader: 'Forgot Password',
+      //message: 'Forgot Password',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Please enter registered email',
+          
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: (data: any) => {
+           
+            console.log('Canceled', data);
+          }
+        },
+        {
+          text: 'Done',
+          handler: (data: any) => {
+           
+            console.log('sending Information', data);
+
+            let valideMail = this.validateEmail(data.email);
+
+            if(data.email=="")
+            {
+
+              this.apiService.nativeToast("Please enter your registered email")
+
+            }
+            else if(valideMail)
+            {
+              this.forgotApi(data.email);
+            }
+            else if(!valideMail)
+            {
+              this.apiService.nativeToast("You have entered an invalid email")
+            }
+
+          }
+        }
+      ]
+    }).then(res => {
+      res.present();
+    });
+  }
+
+
+   validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  forgotApi(email)
+  {
+
+    let PostData = {
+      email:email,
+    }
+
+    this.apiService.postMethod("api/forgot-password?",PostData).then((response) => {
+      
+      console.log(response);
+      // if(response["status"]=="S")
+      // {
+        this.apiService.nativeToast(response["message"]);
+      //}
+      },
+      (error) => {
+      console.log(error);
+      this.apiService.nativeToast(error.error.message);
+      });
+  }
+
   // loginForm: FormGroup;
   // submitted = false;
   // passwordType = "password";
