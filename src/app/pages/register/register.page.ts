@@ -316,14 +316,16 @@ else
     this.apiService.postMethod("api/register?",PostData).then((response) => {
       
       console.log(response);
-
+debugger
       if(response['status']=='S')
       {
-        this.apiService.nativeToast(response["message"]);
-        this.router.navigate([
-          "otp",
-          JSON.stringify(formData.email)
-        ]);
+
+          this.apiService.nativeToast(response["message"]);
+          this.router.navigate([
+            "otp",
+            JSON.stringify(formData.email)
+          ]);
+        
       }
       else
       {

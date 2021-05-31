@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'document-scan',
     loadChildren: () => import('./sidemenu/document-scan/document-scan.module').then( m => m.DocumentScanPageModule)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./modals/map/map.module').then( m => m.MapPageModule)
   }
 ];
 @NgModule({

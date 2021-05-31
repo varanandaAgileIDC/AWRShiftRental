@@ -69,6 +69,9 @@
     },
     "cordova-plugin-document-scanner": {
       "PACKAGE_NAME": "com.agile.awr.app"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "com.agile.awr.app"
     }
   },
   "dependent_plugins": {}

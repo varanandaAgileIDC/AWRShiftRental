@@ -165,6 +165,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "scan"
       ]
+    },
+    {
+      "id": "cordova-plugin-datepicker.DatePicker",
+      "file": "plugins/cordova-plugin-datepicker/www/android/DatePicker.js",
+      "pluginId": "cordova-plugin-datepicker",
+      "clobbers": [
+        "datePicker"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -185,6 +193,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-pedometer": "0.4.1",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-plugin-android-permissions": "1.1.2",
-    "cordova-plugin-document-scanner": "4.2.6"
+    "cordova-plugin-document-scanner": "4.2.6",
+    "cordova-plugin-datepicker": "0.9.3"
   };
 });

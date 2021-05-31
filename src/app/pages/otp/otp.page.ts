@@ -84,9 +84,18 @@ export class OtpPage implements OnInit {
 
       if(response['status']=='S')
       {
-        this.apiService.nativeToast(response["message"]);
-        localStorage.setItem("AWRLogin", JSON.stringify(response["user"]));
-        this.router.navigate(['/tabs']);
+        if(response["user"].status==0)
+        {
+          this.apiService.nativeToast(response["message"]);
+          this.router.navigateByUrl('/login');
+        }
+        else
+        {
+          this.apiService.nativeToast(response["message"]);
+          localStorage.setItem("AWRLogin", JSON.stringify(response["user"]));
+          this.router.navigate(['/tabs']);
+        }
+       
       }
       else
       {

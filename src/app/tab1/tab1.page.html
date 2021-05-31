@@ -53,9 +53,9 @@
           <ion-col>
             <div class="input-field location-field">
               <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
-              <ion-item>
-                <ion-label position="floating">Pick Up Location</ion-label>
-                <ion-input type="text"></ion-input>
+              <ion-item (click)="pickUpLocation()">
+                <ion-label >Pick Up Location</ion-label>
+                <!-- <ion-input type="text"></ion-input> -->
               </ion-item>
             </div>
           </ion-col>
@@ -64,9 +64,9 @@
           <ion-col>
             <div class="input-field location-field">
               <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
-              <ion-item>
-                <ion-label position="floating">Drop Off Location</ion-label>
-                <ion-input type="text"></ion-input>
+              <ion-item (click)="dropOffLocation()">
+                <ion-label>Drop Off Location</ion-label>
+                <!-- <ion-input type="text"></ion-input> -->
               </ion-item>
             </div>
           </ion-col>
@@ -75,9 +75,9 @@
           <ion-col>
             <div class="input-field location-field">
               <div class="blue-bg-input"><ion-icon name="calendar-outline"></ion-icon></div>
-              <ion-item>
+              <ion-item (click)="startTrip()">
                 <ion-label position="floating">Start Trip</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="fromField"></ion-input>
               </ion-item>
             </div>
           </ion-col>

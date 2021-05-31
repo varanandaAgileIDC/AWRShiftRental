@@ -18,6 +18,7 @@ import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { DocumentScanner } from '@ionic-native/document-scanner/ngx';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { DocumentScanner } from '@ionic-native/document-scanner/ngx';
     LocationAccuracy,
     AndroidPermissions,
     DocumentScanner,
+    DatePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
