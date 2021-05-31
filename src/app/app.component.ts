@@ -89,13 +89,16 @@ export class AppComponent {
     this.router.navigate(["/document-scan"]);
   }
 
+  resetPassword()
+  {
+    this.router.navigate(["/reset-password"]);
+  }
+
   logOut()
   {
     localStorage.removeItem("AWRLogin");
     this.router.navigate(["/login"]);
-
   }
-
   editProfile()
   {
     this.router.navigate(["/edit-profile"]);

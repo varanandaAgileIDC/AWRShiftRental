@@ -5,7 +5,6 @@ import { LoadingController } from '@ionic/angular';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })

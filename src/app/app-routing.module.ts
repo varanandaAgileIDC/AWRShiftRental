@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () => import('./modals/map/map.module').then( m => m.MapPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./sidemenu/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
   }
 ];
 @NgModule({
