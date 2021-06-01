@@ -1,8 +1,11 @@
 <ion-content>
     <ion-header style="background: white;">
     <ion-toolbar>  
-      <ion-title>
-        Choose pick up location
+      <ion-title *ngIf="apiService.addressPopUp=='pickUp'">
+      <b> Choose pick up location </b> 
+      </ion-title>
+      <ion-title *ngIf="apiService.addressPopUp=='dropOff'">
+       <b> Choose drop off location </b>
       </ion-title>
       <ion-button class="notifications-btn">
         <ion-icon name="location-outline" style="color:#1D97DB;height:30px;width:30px;"></ion-icon>

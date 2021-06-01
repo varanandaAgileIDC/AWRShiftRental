@@ -7,6 +7,8 @@ import { MapPage } from '../modals/map/map.page';
 import { ApiService } from '../services/api.service';
 import * as moment from "moment";
 
+declare var google;
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -27,7 +29,7 @@ export class Tab1Page {
     public appComponent:AppComponent,
     private modalCtrl:ModalController,
     private datePicker:DatePicker,
-    private apiService:ApiService) {}
+    public apiService:ApiService) {}
 
   ionViewDidEnter(){
 
@@ -77,7 +79,7 @@ export class Tab1Page {
 
   async pickUpLocation()
   { 
-      
+    this.apiService.addressPopUp = "pickUp";  
     const modal = await this.modalCtrl.create({
         component: MapPage,
         cssClass: "map-modal",
@@ -92,7 +94,7 @@ export class Tab1Page {
   }
   async dropOffLocation()
   {
-
+    this.apiService.addressPopUp = "dropOff";  
     const modal = await this.modalCtrl.create({
       component: MapPage,
       cssClass: "map-modal",
@@ -102,9 +104,9 @@ export class Tab1Page {
       console.log(data);
     });
     modal.present();
-  
 
   }
+
   startTrip()
   {
    

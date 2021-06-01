@@ -55,7 +55,7 @@
               <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
               <ion-item (click)="pickUpLocation()">
                 <ion-label position="floating">Pick Up Location</ion-label>
-                <ion-input type="text" readonly></ion-input>
+                <ion-input type="text" readonly [(ngModel)]="apiService.pickUpLocation" [ngModelOptions]="{standalone: true}"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -66,7 +66,7 @@
               <div class="blue-bg-input"><ion-icon name="location-outline"></ion-icon></div>
               <ion-item (click)="dropOffLocation()">
                 <ion-label position="floating">Drop Off Location</ion-label>
-                <ion-input type="text" readonly></ion-input>
+                <ion-input type="text" readonly [(ngModel)]="apiService.dropOffLocation" [ngModelOptions]="{standalone: true}"></ion-input>
               </ion-item>
             </div>
           </ion-col>

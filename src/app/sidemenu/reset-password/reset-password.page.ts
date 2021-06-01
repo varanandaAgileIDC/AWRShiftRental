@@ -97,7 +97,7 @@ export class ResetPasswordPage implements OnInit {
       {
         this.apiService.nativeToast(response["message"]);
         this.resetForm.reset();
-        this.router.navigate(['/tabs']);
+        this.router.navigate(['/login']);
       }
       else
       {

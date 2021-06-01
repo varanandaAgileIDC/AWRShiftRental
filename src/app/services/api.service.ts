@@ -15,6 +15,15 @@ export class ApiService {
   errorResponse:any;
   isLoading = false;
   profileImage = "/assets/profile.png";
+
+  pickUpLocation:any;
+  dropOffLocation:any;
+
+  addressPopUp = "pickUp";
+
+  matrixDistance:any;
+  matrixTime:any;
+
   //apiUrl = 'https://randomuser.me/api/?results=20&page=';
   constructor(private http:HttpClient,
     private toastCtrl:Toast,
