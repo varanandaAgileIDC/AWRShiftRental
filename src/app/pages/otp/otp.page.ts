@@ -19,7 +19,7 @@ export class OtpPage implements OnInit {
   five:any;
   six:any;
 
-  timeLeft: number = 10;
+  timeLeft: number = 30;
 
   otpBtn:boolean = true;
 
@@ -42,11 +42,11 @@ export class OtpPage implements OnInit {
     this.apiService.interval =  interval(1000).subscribe(x => {
 
       if(this.timeLeft > 0) {
-        debugger
+      
         this.timeLeft--;
         this.otpBtn = true
       } else if(this.timeLeft == 0){
-        debugger
+       
         this.otpBtn = false
         this.apiService.interval.unsubscribe();
       }
@@ -76,6 +76,8 @@ export class OtpPage implements OnInit {
     
         this.apiService.nativeToast(response["message"]);
 
+        this.otpInterval();
+
       },
       (error) => {
     
@@ -86,6 +88,23 @@ export class OtpPage implements OnInit {
 
   }
 
+  otpInterval()
+  {
+    this.timeLeft = 30;
+    this.apiService.interval =  interval(1000).subscribe(x => {
+
+      if(this.timeLeft > 0) {
+      
+        this.timeLeft--;
+        this.otpBtn = true
+      } else if(this.timeLeft == 0){
+       
+        this.otpBtn = false
+        this.apiService.interval.unsubscribe();
+      }
+
+    });
+  }
 
   otpValidate() {
 

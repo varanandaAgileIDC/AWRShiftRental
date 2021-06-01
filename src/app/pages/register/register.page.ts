@@ -323,9 +323,9 @@ else
   }
 
 }
-debugger
+
     this.apiService.postMethod("api/register?",PostData).then((response) => {
-      debugger
+   
       console.log(response);
 
       if(response['status']=='S')
@@ -345,7 +345,7 @@ debugger
 
       },
       (error) => {
-     debugger
+    
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

@@ -61,12 +61,12 @@
   
     </div>
 
-    <p style="font-size: 16px;" *ngIf="otpBtn">Didn't get the OTP? <u style="color:#1D97DB;">Resend</u></p>
+    <p style="font-size: 16px;" *ngIf="otpBtn">Didn't get the OTP? <u style="color:black;">Resend</u></p>
 
     <p style="font-size: 16px;" *ngIf="!otpBtn">Didn't get the OTP? <u style="color:#1D97DB;" (click)="resendOtp()">Resend</u></p>
 
     <div *ngIf="otpBtn" style="text-align: center;">
-      <p>Resend OTP in {{timeLeft}} seconds</p>
+      <p>Resend OTP in <span style="color:#1D97DB;"> {{timeLeft}} </span> seconds</p>
     </div>
 
 <div style="text-align: center;">

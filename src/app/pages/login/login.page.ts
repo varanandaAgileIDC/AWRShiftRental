@@ -95,12 +95,12 @@ export class LoginPage implements OnInit {
     }
 
     this.apiService.postMethod("api/login?",PostData).then((response) => {
- 
+      
       console.log(response);
 
       if(response["userdata"].status==0)
       {
-        this.apiService.nativeToast(response["message"]);
+        this.apiService.nativeToast("These credentials do not match our records");
       }
       else
       {
@@ -111,7 +111,7 @@ export class LoginPage implements OnInit {
 
       },
       (error) => {
-     
+    
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });
