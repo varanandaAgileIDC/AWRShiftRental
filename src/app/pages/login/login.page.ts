@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, MenuController, Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,14 @@ export class LoginPage implements OnInit {
   loginForm:FormGroup;
   submitted = false;
 
+
   constructor( private router: Router,
     private apiService:ApiService,
     private http:HttpClient,
     private platform:Platform,
     private alertCtrl:AlertController,
-    private formBuilder:FormBuilder) { }
+    private formBuilder:FormBuilder,
+    private menuCtrl:MenuController) { }
 
   ngOnInit() {
 
@@ -38,6 +41,15 @@ export class LoginPage implements OnInit {
 
    }
 
+   ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+
+  xyz()
+  {
+    this.apiService.nativeToast("xyz");
+  }
+
   ionViewDidEnter(){
    
     //this.register();
@@ -45,9 +57,12 @@ export class LoginPage implements OnInit {
     // this.awr();
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
+    
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/login")
+      {
+        this.presentConfirm();
+      }else if (this.router["routerState"].snapshot.url == "/tabs/tab1")
       {
         this.presentConfirm();
       }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-otp',
@@ -18,6 +19,10 @@ export class OtpPage implements OnInit {
   five:any;
   six:any;
 
+  timeLeft: number = 10;
+
+  otpBtn:boolean = true;
+
   constructor(private activateRoute:ActivatedRoute,
     private apiService:ApiService,
     private router:Router,
@@ -33,6 +38,22 @@ export class OtpPage implements OnInit {
 
   }
   ionViewDidEnter(){
+
+    this.apiService.interval =  interval(1000).subscribe(x => {
+
+      if(this.timeLeft > 0) {
+        debugger
+        this.timeLeft--;
+        this.otpBtn = true
+      } else if(this.timeLeft == 0){
+        debugger
+        this.otpBtn = false
+        this.apiService.interval.unsubscribe();
+      }
+
+    });
+
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       
       console.log("Back press handler!");

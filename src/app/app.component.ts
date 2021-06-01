@@ -47,6 +47,14 @@ export class AppComponent {
         console.log("data",data);
       });
   
+      let matrixData = JSON.parse(localStorage.getItem("matrixDetails"));
+    if(matrixData)
+    {
+
+      localStorage.removeItem("matrixDetails");
+
+    }
+
       //this.router.navigateByUrl('/intro');
       let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
       if(loginDB)

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { MustMatch } from 'src/app/pages/register/must-match.validator';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -23,7 +23,8 @@ export class ResetPasswordPage implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private platform:Platform,
     private router:Router,
-    private apiService:ApiService) { }
+    private apiService:ApiService,
+    private alertCtrl:AlertController) { }
 
   ngOnInit() {
 
@@ -45,9 +46,17 @@ export class ResetPasswordPage implements OnInit {
     }
 
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-   
+  
       console.log("Back press handler!");
-     this.router.navigate(["/tabs"]);
+
+      if (this.router["routerState"].snapshot.url == "/tabs/tab1")
+      {
+        this.presentConfirm();
+      }
+      else
+      {
+        this.router.navigate(["/tabs"]);
+      }
     });
   }
 
@@ -66,6 +75,33 @@ export class ResetPasswordPage implements OnInit {
   get f() {
     return this.resetForm.controls;
   }
+
+
+  async presentConfirm() {
+
+    let alert = await this.alertCtrl.create({
+      //header: "Confirmation Alert",
+      message: "Are you sure you want to exit?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          },
+        },
+        {
+          text: "Yes",
+          handler: () => {
+            console.log("Yes clicked");
+            navigator["app"].exitApp();
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
 
   onSubmit() {
   

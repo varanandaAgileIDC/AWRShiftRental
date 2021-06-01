@@ -47,7 +47,6 @@ export class MapPage implements OnInit {
         let latlng = {lat: pos.coords.latitude, lng: pos.coords.longitude};
         geocoder.geocode({'location': latlng}, (results, status) => {
 
-  debugger;
    console.log(results); // read data from here
 
     this.address = String(results[0].formatted_address);
@@ -88,7 +87,7 @@ export class MapPage implements OnInit {
     });
 
     this.map.addListener("click", (e) => {
-      debugger
+     
       this.placeMarkerAndPanTo(e.latLng, this.map);
     });
 
@@ -97,14 +96,13 @@ export class MapPage implements OnInit {
 
 
 placeMarkerAndPanTo(latLng, map) {
-  debugger
+  
   this.marker.setMap(null)
   this.marker = null;
 
   let geocoder = new google.maps.Geocoder;
   geocoder.geocode({'location': latLng}, (results, status) => {
 
-debugger;
 console.log(results); // read data from here
 
 this.address = String(results[0].formatted_address);
@@ -149,8 +147,7 @@ infowindow.open(this.map, this.marker);
 
   done()
   {
-    debugger
-
+    
     if(this.apiService.addressPopUp=="pickUp")
     {
       this.apiService.pickUpLocation = this.address;
@@ -163,7 +160,26 @@ infowindow.open(this.map, this.marker);
     if(this.apiService.pickUpLocation && this.apiService.dropOffLocation)
     {
 
-      this.findDistanceAndTime();
+      //this.findDistanceAndTime();
+      //calling the calcDistance function and passing callback function reference
+ this.matrixDetails = this.calcDistance(this.apiService.pickUpLocation,this.apiService.dropOffLocation,this.Callback_calcDistance);
+
+this.apiService.showLoader();
+ setTimeout( ()=>{
+
+  this.apiService.hideLoader();
+  let matrixData = JSON.parse(localStorage.getItem("matrixDetails"));
+  if(matrixData)
+  {
+
+    this.apiService.matrixDistance = matrixData["distance"];
+    this.apiService.matrixTime = matrixData["duration"];
+   
+
+  }
+  
+}, 5000)
+
 
     }
 
@@ -184,12 +200,14 @@ infowindow.open(this.map, this.marker);
       //unitSystem: new google.maps.UnitSystem.IMPERIAL
     };
 
-    debugger
     // Call Distance Matrix service
-    this.matrixDetails =  service.getDistanceMatrix(matrixOptions, callback)
+    this.matrixDetails = service.getDistanceMatrix(matrixOptions, this.callback)
+
+}
+
     
     // Callback function used to process Distance Matrix response
-  function callback(response, status) {
+     callback(response, status) {
     
       console.log(response);  
       if (status !== "OK") {
@@ -198,7 +216,7 @@ infowindow.open(this.map, this.marker);
       }
       else
       {
-      debugger
+    
         let distanceStr  = response["rows"][0]["elements"][0]["distance"]["text"]; 
         //this.apiService.matrixDistance = distanceStr.replace("mi","");
         // let number = Number(matrixDistance);
@@ -207,20 +225,52 @@ infowindow.open(this.map, this.marker);
 
         // this.apiservice.matrixDistance = this.matrixDistance;
         // this.apiservice.matrixTime = this.matrixTime;
-        debugger
+        
         console.log(response);    
       }
 
-      debugger
-            
-    
 }
 
-      
- 
-    debugger
-  }
 
+ calcDistance(origin1,destinationB,ref_Callback_calcDistance){
+  var geocoder = new google.maps.Geocoder();
+  var service = new google.maps.DistanceMatrixService();
+  var temp_duration = 0;
+  var temp_distance = 0;
+  var testres;
+  service.getDistanceMatrix(
+      {
+          origins: [origin1],
+          destinations: [destinationB],
+          travelMode: google.maps.TravelMode.DRIVING,
+          unitSystem: google.maps.UnitSystem.METRIC,
+          avoidHighways: false,
+          avoidTolls: false
+      }, function(response, status) {
+          if (status !== google.maps.DistanceMatrixStatus.OK) {
+              alert('Error was: ' + status);
+              testres= {"duration":0,"distance":0};
+          } else {
+            
+              testres= {"duration":response["rows"][0]["elements"][0]["duration"]["text"],"distance":response["rows"][0]["elements"][0]["distance"]["text"]};
+
+              if(typeof ref_Callback_calcDistance === 'function'){
+                  //calling the callback function
+                  ref_Callback_calcDistance(testres)
+              }
+          }////
+      }
+  );
+}
+
+ Callback_calcDistance(testres) {
    
+   localStorage.setItem("matrixDetails", JSON.stringify(testres));
+//do something with testres
+}
+
+
+
+
 
 }

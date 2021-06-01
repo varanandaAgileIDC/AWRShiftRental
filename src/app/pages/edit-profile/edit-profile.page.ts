@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camera } from '@ionic-native/camera/ngx';
-import { Platform, ActionSheetController } from '@ionic/angular';
+import { Platform, ActionSheetController, AlertController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class EditProfilePage {
     private router:Router,
     private actionSheetController:ActionSheetController,
     public apiService:ApiService,
-    private camera:Camera) { }
+    private camera:Camera,
+    private alertCtrl:AlertController) { }
 
   ngOnInit() {
 
@@ -35,10 +36,43 @@ export class EditProfilePage {
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
      
       console.log("Back press handler!");
-     this.router.navigate(["/tabs"]);
+      if (this.router["routerState"].snapshot.url == "/tabs/tab1")
+      {
+        this.presentConfirm();
+      }
+      else
+      {
+        this.router.navigate(["/tabs"]);
+      }
+     
     });
   }
 
+
+  async presentConfirm() {
+
+    let alert = await this.alertCtrl.create({
+      //header: "Confirmation Alert",
+      message: "Are you sure you want to exit?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          },
+        },
+        {
+          text: "Yes",
+          handler: () => {
+            console.log("Yes clicked");
+            navigator["app"].exitApp();
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 
   async pickImage() {
     const actionSheet = await this.actionSheetController.create({

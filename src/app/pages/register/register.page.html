@@ -110,13 +110,13 @@
         <div *ngIf="f1.position.errors.required">Position is required</div>
       </div>
 
-      <div class="input-field">
+      <!-- <div class="input-field">
         <ion-item>
           <ion-label position="floating">Debitor Code</ion-label>
           <ion-input formControlName="debitorCode"></ion-input>
         </ion-item>
       </div>
-  
+   -->
   
       <div class="input-field">
   
@@ -177,7 +177,18 @@
       <div class="input-field">
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
+          <ion-input type="password" [type]="passwordTypeA" formControlName="password"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='password'"
+          name="eye-off-outline"
+          (click)="hideShowA()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='text'"
+          name="eye-outline"
+          (click)="hideShowA()"
+        ></ion-icon>
         </ion-item>
       </div>
       <div *ngIf="submitted && f1.password.errors" class="invalid-feedback">
@@ -188,7 +199,18 @@
       <div class="input-field">
         <ion-item>
           <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+          <ion-input type="password" [type]="passwordTypeB" formControlName="confirmPassword"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='password'"
+          name="eye-off-outline"
+          (click)="hideShowB()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='text'"
+          name="eye-outline"
+          (click)="hideShowB()"
+        ></ion-icon>
         </ion-item>
       </div>
       <div *ngIf="submitted && f1.confirmPassword.errors" class="invalid-feedback">
@@ -292,12 +314,12 @@
         <div *ngIf="f2.lastName.errors.required">Last Name is required</div>
       </div>
       
-      <div class="input-field">
+      <!-- <div class="input-field">
         <ion-item>
           <ion-label position="floating">Debitor Code</ion-label>
           <ion-input formControlName="debitorCode"></ion-input>
         </ion-item>
-      </div>
+      </div> -->
   
   
       <div class="input-field">
@@ -379,7 +401,18 @@
       <div class="input-field">
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
+          <ion-input type="password" [type]="passwordTypeA" formControlName="password"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='password'"
+          name="eye-off-outline"
+          (click)="hideShowA()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeA=='text'"
+          name="eye-outline"
+          (click)="hideShowA()"
+        ></ion-icon>
         </ion-item>
       </div>
       <div *ngIf="submitted && f2.password.errors" class="invalid-feedback">
@@ -390,7 +423,18 @@
       <div class="input-field">
         <ion-item>
           <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+          <ion-input type="password" [type]="passwordTypeB" formControlName="confirmPassword"></ion-input>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='password'"
+          name="eye-off-outline"
+          (click)="hideShowB()"></ion-icon>
+          <ion-icon class="eyeIcon"
+          slot="end"
+          *ngIf="passwordTypeB=='text'"
+          name="eye-outline"
+          (click)="hideShowB()"
+        ></ion-icon>
         </ion-item>
       </div>
       <div *ngIf="submitted && f2.confirmPassword.errors" class="invalid-feedback">

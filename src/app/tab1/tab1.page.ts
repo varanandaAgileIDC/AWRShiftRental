@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
-import { AlertController, ModalController, Platform } from '@ionic/angular';
+import { AlertController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { MapPage } from '../modals/map/map.page';
 import { ApiService } from '../services/api.service';
@@ -29,9 +29,19 @@ export class Tab1Page {
     public appComponent:AppComponent,
     private modalCtrl:ModalController,
     private datePicker:DatePicker,
-    public apiService:ApiService) {}
+    public apiService:ApiService,
+    private menuCtrl:MenuController) {
+      this.menuCtrl.enable(true);
+    }
+
+    ionViewWillEnter() {
+      this.menuCtrl.enable(true);
+    }
+  
 
   ionViewDidEnter(){
+
+    this.menuCtrl.enable(true);
 
     let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
         if(loginDB)
@@ -40,9 +50,18 @@ export class Tab1Page {
           this.appComponent.name = loginDB["userdata"].first_name + " " + loginDB["userdata"].last_name;
 
         }
+
+
+    let matrixData = JSON.parse(localStorage.getItem("matrixDetails"));
+    if(matrixData)
+    {
+
+      this.apiService.matrixDistance = matrixData["distance"];
+      this.apiService.matrixTime = matrixData["duration"];
+   
+    }
    
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
-      
       console.log("Back press handler!");
       if (this.router["routerState"].snapshot.url == "/tabs/tab1")
       {

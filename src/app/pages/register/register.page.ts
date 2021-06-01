@@ -27,6 +27,9 @@ export class RegisterPage implements OnInit {
   registerForm1:FormGroup;
   registerForm2:FormGroup;
 
+  passwordTypeA = "password";
+  passwordTypeB = "password";
+
   submitted = false;
 
   termStatus:boolean = false;
@@ -74,7 +77,7 @@ export class RegisterPage implements OnInit {
         // contactName: ["", Validators.required],
         // contactTitle: ["", Validators.nullValidator],
         position: ["", Validators.required],
-        debitorCode: ["", Validators.nullValidator],
+        //debitorCode: ["", Validators.nullValidator],
         email: [
           "",
           [
@@ -83,7 +86,7 @@ export class RegisterPage implements OnInit {
             Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
           ],
         ],
-        password: ["", [Validators.required, Validators.minLength(8)]],
+        password: ["", [Validators.required]],
         confirmPassword: ["", Validators.required],
         companyName: ["", Validators.required],
         address: ["", Validators.required],
@@ -114,8 +117,8 @@ export class RegisterPage implements OnInit {
             Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
           ],
         ],
-        debitorCode: ["", Validators.nullValidator],
-        password: ["", [Validators.required, Validators.minLength(8)]],
+        //debitorCode: ["", Validators.nullValidator],
+        password: ["", [Validators.required]],
         confirmPassword: ["", Validators.required],
         address: ["", Validators.required],
         mobile: [
@@ -150,6 +153,14 @@ export class RegisterPage implements OnInit {
   }
   get f2() {
     return this.registerForm2.controls;
+  }
+
+  hideShowA() {
+    this.passwordTypeA = this.passwordTypeA === "text" ? "password" : "text";
+  }
+
+  hideShowB() {
+    this.passwordTypeB = this.passwordTypeB === "text" ? "password" : "text";
   }
 
   onSubmit1() {
@@ -312,9 +323,9 @@ else
   }
 
 }
-
+debugger
     this.apiService.postMethod("api/register?",PostData).then((response) => {
-      
+      debugger
       console.log(response);
 
       if(response['status']=='S')
@@ -334,7 +345,7 @@ else
 
       },
       (error) => {
-     
+     debugger
       console.log(error);
       this.apiService.nativeToast(error.error.message);
       });

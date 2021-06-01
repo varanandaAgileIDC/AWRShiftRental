@@ -24,6 +24,8 @@ export class ApiService {
   matrixDistance:any;
   matrixTime:any;
 
+  interval:any;
+
   //apiUrl = 'https://randomuser.me/api/?results=20&page=';
   constructor(private http:HttpClient,
     private toastCtrl:Toast,
@@ -98,7 +100,7 @@ export class ApiService {
   }
 
     nativeToast(message) {
-      this.toastCtrl.show(message, "3000", "bottom").subscribe((toast) => {
+      this.toastCtrl.show(message, "4000", "bottom").subscribe((toast) => {
         console.log(toast);
       });
     }
