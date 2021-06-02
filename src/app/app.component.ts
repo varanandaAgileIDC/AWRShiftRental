@@ -88,6 +88,11 @@ export class AppComponent {
     this.router.navigate(["/break-down"]);
   }
 
+  serviceRequest()
+  {
+    this.router.navigate(["/service-list"]);
+  }
+
   speedCheck()
   {
     this.router.navigate(["/speed-check"]);

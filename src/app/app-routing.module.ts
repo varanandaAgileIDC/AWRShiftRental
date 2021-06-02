@@ -54,6 +54,18 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./sidemenu/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'service-request',
+    loadChildren: () => import('./sidemenu/service-request/service-request.module').then( m => m.ServiceRequestPageModule)
+  },
+  {
+    path: 'breakdown-list',
+    loadChildren: () => import('./sidemenu/breakdown-list/breakdown-list.module').then( m => m.BreakdownListPageModule)
+  },
+  {
+    path: 'service-list',
+    loadChildren: () => import('./sidemenu/service-list/service-list.module').then( m => m.ServiceListPageModule)
   }
 ];
 @NgModule({
