@@ -20,8 +20,8 @@ export class RegisterPage implements OnInit {
   mobileCodes = [];
   mobileCode = "+971"
 
-  newsletter = 0;
-  smsemail = 0;
+  newsletter = 1;
+  smsemail = 1;
   terms = 0;
 
   registerForm1:FormGroup;
@@ -33,8 +33,8 @@ export class RegisterPage implements OnInit {
   submitted = false;
 
   termStatus:boolean = false;
-  newsStatus:boolean = false;
-  emailStatus:boolean = false;
+  newsStatus:boolean = true;
+  emailStatus:boolean = true;
   termToggle:boolean = true;
 
   constructor(private router:Router,

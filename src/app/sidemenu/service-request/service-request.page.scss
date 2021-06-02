@@ -63,3 +63,36 @@ ion-item {
     max-width: 100%;
     color: white;
 }
+
+.location-field ion-label, .location-field ion-input { margin-left: 60px; --color: #fff; }
+.input-field.location-field {
+    background: transparent;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid #1D97DB;
+    margin: 20px;
+    margin-top: 20px;
+}
+
+.blue-bg-input {
+    position: absolute;
+    color: #fff;
+    padding: 14px 12px 4px 12px;
+    background: #1D97DB;
+    border-radius: 12px 0 0 12px;
+    margin-left: 0px;
+    font-size: 30px;
+ }
+
+ .submitBtn {
+   
+    margin-top: 10px;
+    --background: #1D97DB;
+    --box-shadow:none;
+    --border-radius: 14px;
+    width: 80%;
+    height: 55px;
+    text-transform: none;
+
+}

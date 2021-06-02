@@ -85,7 +85,7 @@ export class AppComponent {
 
   breakDown()
   {
-    this.router.navigate(["/break-down"]);
+    this.router.navigate(["/breakdown-list"]);
   }
 
   serviceRequest()

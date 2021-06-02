@@ -15,6 +15,7 @@ import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
 export class BreakDownPage implements OnInit {
 
   images = [];
+  vehicleNumbers = [];
 
   constructor(private platform:Platform,
     private router:Router,private imagePicker:ImagePicker,
@@ -24,6 +25,40 @@ export class BreakDownPage implements OnInit {
   
 
   ngOnInit() {
+
+    this.vehicleNumbers = [{
+      vehicleNumber:"A 92868",
+      name:"Lamborghini Diablo"
+    },
+    {
+      vehicleNumber:"A 93868",
+      name:"Ford Raptor"
+    },
+    {
+      vehicleNumber:"A 94868",
+      name:"Ferrari Testarossa",
+    },
+    {
+      vehicleNumber:"A 95868",
+      name:"Porsche 911 Carrera"
+    },
+    {
+      vehicleNumber:"A 92868",
+      name:"Jensen Interceptor"
+    },
+    {
+      vehicleNumber:"A 93868",
+      name:"Lamborghini Huracán"
+    },
+    {
+      vehicleNumber:"A 94868",
+      name:"Ferrari 812 Superfast",
+    },
+    {
+      vehicleNumber:"A 95868",
+      name:"Jeep Gladiator"
+    }]
+
   }
 
   ionViewDidEnter(){
@@ -121,9 +156,10 @@ export class BreakDownPage implements OnInit {
               }
 
           }
+          debugger
 
       }, (err) => { });
-    
+    debugger
 
   }
 
