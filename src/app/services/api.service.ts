@@ -25,6 +25,9 @@ export class ApiService {
   matrixTime:any;
 
   interval:any;
+  fromWhichPage:any;
+
+  selectedVehicle:any;
 
   //apiUrl = 'https://randomuser.me/api/?results=20&page=';
   constructor(private http:HttpClient,
@@ -80,6 +83,25 @@ export class ApiService {
           catchError(this.handleError)
         );
     }
+
+
+    getMethod(service,data) {
+   
+      return new Promise((resolve, reject) => {
+        this.showLoader();
+        this.http.get(this.base_path+service+data).subscribe(response => {
+      
+        this.hideLoader();
+        resolve(response);
+        },
+        (error) =>
+        {
+         
+          this.hideLoader();
+          reject(error);
+        });
+      });
+  }
 
      postMethod(service,data) {
    

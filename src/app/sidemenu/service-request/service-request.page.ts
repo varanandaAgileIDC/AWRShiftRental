@@ -16,10 +16,15 @@ export class ServiceRequestPage implements OnInit {
   serviceDate:any;
   startDate:any;
 
+  loginDB:any;
+  requestDate:any;
+
+  description:any;
+
   constructor(private platform:Platform,
     private router:Router,
     private datePicker:DatePicker,
-    private apiService:ApiService) { }
+    public apiService:ApiService) { }
 
   ngOnInit() {
     this.vehicleNumbers = [{
@@ -58,11 +63,20 @@ export class ServiceRequestPage implements OnInit {
 
   ionViewDidEnter(){
    
+    this.loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
+    
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       
       console.log("Back press handler!");
-     this.router.navigate(["/tabs"]);
+     this.router.navigate(["/service-list"]);
     });
+  }
+
+  selectVehicle()
+  {
+    this.router.navigate(["/customer-vehicles"]);
+    this.apiService.fromWhichPage = "service-request";
   }
 
   pickDate()
@@ -96,10 +110,10 @@ export class ServiceRequestPage implements OnInit {
             } else {
               this.startDate = response;
   
-          //  var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
-          //  var m = this.getMonth( this.startDate);
-          //  var y = this.startDate.getFullYear();
-          //  this.startSelectedDate = d + "-" + m + "-" + y;
+           var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
+           var m = this.getMonth( this.startDate);
+           var y = this.startDate.getFullYear();
+           this.requestDate = y + "-" + m + "-" + d;
 
            let newDate = moment(response, "MM:DD:YYYY");
            let momentDate = newDate.format("MMM DD YYYY")
@@ -117,6 +131,39 @@ export class ServiceRequestPage implements OnInit {
             console.log("error response", error);
           }
         );
+  }
+
+  getMonth(date) {
+    var month = date.getMonth() + 1;
+    return month < 10 ? '0' + month : '' + month; // ('' + month) for string result
+  }
+
+
+  submit()
+  {
+
+    let PostData = {
+      vehicle_id:this.apiService.selectedVehicle.id,
+      customer_id:this.loginDB["userdata"].id,
+      service_request_date:this.requestDate,
+      description:this.description
+    }
+debugger
+    this.apiService.postMethod("api/servicerequest?",PostData).then((response) => {
+      debugger
+      console.log(response);
+      if(response["status"]="S")
+      {
+        this.apiService.nativeToast(response["message"]);
+        this.router.navigate(["/service-list"]);
+      }
+      },
+      (error) => {
+      debugger
+      console.log(error);
+      this.apiService.nativeToast(error.error.message);
+      });
+
   }
 
 

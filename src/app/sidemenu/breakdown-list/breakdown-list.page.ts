@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-breakdown-list',
@@ -10,7 +11,8 @@ import { Platform } from '@ionic/angular';
 export class BreakdownListPage implements OnInit {
   complaintList = [];
   constructor(private platform:Platform,
-    private router:Router) { }
+    private router:Router,
+    private apiService:ApiService) { }
 
     ngOnInit() {
 
@@ -69,6 +71,7 @@ export class BreakdownListPage implements OnInit {
   serviceRequest()
   {
     debugger
+    this.apiService.selectedVehicle = "";
     this.router.navigate(["/break-down"]);
   }
 

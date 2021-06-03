@@ -35,7 +35,7 @@ export class DocumentScanPage implements OnInit {
     let opts: DocumentScannerOptions = {
       sourceType : DocumentScannerSourceType.CAMERA,
       fileName : "myfile",
-      quality : 2.5,
+      quality : 1.0,
       returnBase64 : true
   };
   
@@ -61,7 +61,7 @@ this.scanner.scanDoc(opts)
     let opts: DocumentScannerOptions = {
       sourceType : DocumentScannerSourceType.GALLERY,
       fileName : "myfile",
-      quality : 2.5,
+      quality : 1.0,
       returnBase64 : true
   };
   

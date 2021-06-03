@@ -6,6 +6,10 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { ActionSheetController } from '@ionic/angular';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
+import { ApiService } from 'src/app/services/api.service';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
+import * as moment from "moment";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-break-down',
@@ -16,11 +20,25 @@ export class BreakDownPage implements OnInit {
 
   images = [];
   vehicleNumbers = [];
+  loginDB:any;
+  description:any;
+  breakDownDate:any;
+  displayDate:any;
+  startDate:any;
+
+  lat:any;
+  lng:any;
+
+  breakdownTypes = [];
+  breakdownTypeId:any;
 
   constructor(private platform:Platform,
     private router:Router,private imagePicker:ImagePicker,
      private actionSheetController:ActionSheetController,
-    private photoViewer:PhotoViewer,private camera:Camera) { }
+    private photoViewer:PhotoViewer,private camera:Camera,
+    public apiService:ApiService,
+    private datePicker:DatePicker,
+    private geolocation:Geolocation) { }
 
   
 
@@ -63,6 +81,25 @@ export class BreakDownPage implements OnInit {
 
   ionViewDidEnter(){
    
+   
+    this.loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
+
+    this.lookUp();
+
+    this.geolocation.getCurrentPosition().then(pos => {
+
+      
+         
+      this.lat = pos.coords.latitude;
+      this.lng = pos.coords.longitude
+
+    }).catch((error) => {
+
+      
+
+      console.log('Error getting location', error);
+    });
+
     this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
       
       console.log("Back press handler!");
@@ -105,7 +142,11 @@ export class BreakDownPage implements OnInit {
     await actionSheet.present();
   }
 
-
+  selectVehicle()
+  {
+    this.router.navigate(["/customer-vehicles"]);
+    this.apiService.fromWhichPage = "break-down";
+  }
 
   selectImage()
   {
@@ -157,6 +198,8 @@ export class BreakDownPage implements OnInit {
 
           }
           debugger
+
+          console.log('Images: ' + this.images);
 
       }, (err) => { });
     debugger
@@ -213,6 +256,129 @@ zoom(image)
 
   this.photoViewer.show(image, '', {share: false});
 
+
+}
+
+pickDate()
+  {
+      this.datePicker
+        .show({
+          date: new Date(),
+          mode: "date",
+          minDate: this.platform.is("android")
+            ? new Date()
+            : new Date().valueOf(),
+          allowOldDates: false,
+          androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT,
+        })
+        .then(
+          (response) => {
+            let date = new Date();
+  
+            let month = response.getMonth()+1;
+            let month1 = date.getMonth()+1;
+  
+            if (response.getDate() == date.getDate() && month==month1)
+            {
+              response = date;
+            }
+  
+            if (response < date) {
+              this.apiService.nativeToast(
+                "Please select today or future date"
+              );
+            } else {
+              this.startDate = response;
+  
+           var d = (this.startDate.getDate() < 10 ? '0' : '') + this.startDate.getDate();
+           var m = this.getMonth( this.startDate);
+           var y = this.startDate.getFullYear();
+           this.breakDownDate = y + "-" + m + "-" + d;
+
+           let newDate = moment(response, "MM:DD:YYYY");
+           let momentDate = newDate.format("MMM DD YYYY")
+
+           let time = moment(response, "HH-MM A");
+           let momentTime = time.format("hh:mm a");
+
+           this.displayDate = momentDate + ", " + momentTime; 
+           
+
+            }
+  
+          },
+          (error) => {
+            console.log("error response", error);
+          }
+        );
+  }
+
+  getMonth(date) {
+    var month = date.getMonth() + 1;
+    return month < 10 ? '0' + month : '' + month; // ('' + month) for string result
+  }
+
+  lookUp()
+{
+
+
+debugger
+  this.apiService.getMethod("api/lookupvalues/BREAKDOWN_TYPE","").then((response) => {
+    debugger
+    console.log(response);
+    if(response["status"]="S")
+    {
+
+      this.breakdownTypes = response["vehicletypes"];
+      
+    }
+    },
+    (error) => {
+    debugger
+    console.log(error);
+    this.apiService.nativeToast(error.error.message);
+    });
+
+}
+
+selectType(event)
+  {
+
+    debugger
+    this.breakdownTypeId = event.k;
+    debugger
+
+  }
+
+
+submit()
+{
+
+  let PostData = {
+    vehicle_id:this.apiService.selectedVehicle.id,
+    customer_id:this.loginDB["userdata"].id,
+    breakdown_type_id:this.breakdownTypeId,
+    breakdown_date:this.breakDownDate,
+    latitude:this.lat,
+    longitude:this.lng,
+    images:this.images,
+    description:this.description,
+  }
+debugger
+  this.apiService.postMethod("api/vehiclebreakdown?",PostData).then((response) => {
+    debugger
+    console.log(response);
+    if(response["status"]="S")
+    {
+      this.apiService.nativeToast(response["message"]);
+      this.router.navigate(["/breakdown-list"]);
+    }
+    },
+    (error) => {
+    debugger
+    console.log(error);
+    this.apiService.nativeToast(error.error.message);
+    });
 
 }
 

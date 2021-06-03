@@ -66,6 +66,10 @@ const routes: Routes = [
   {
     path: 'service-list',
     loadChildren: () => import('./sidemenu/service-list/service-list.module').then( m => m.ServiceListPageModule)
+  },
+  {
+    path: 'customer-vehicles',
+    loadChildren: () => import('./pages/customer-vehicles/customer-vehicles.module').then( m => m.CustomerVehiclesPageModule)
   }
 ];
 @NgModule({

@@ -21,8 +21,9 @@ export class Tab1Page {
 
   endField:any;
   endDate:any;
-  
 
+  loginDB:any;
+  
   constructor(private platform:Platform,
     private router:Router,
     private alertCtrl:AlertController,
@@ -43,14 +44,13 @@ export class Tab1Page {
 
     this.menuCtrl.enable(true);
 
-    let loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
-        if(loginDB)
+    this.loginDB = JSON.parse(localStorage.getItem("AWRLogin"));
+        if(this.loginDB)
         {
 
-          this.appComponent.name = loginDB["userdata"].first_name + " " + loginDB["userdata"].last_name;
+          this.appComponent.name = this.loginDB["userdata"].first_name + " " + this.loginDB["userdata"].last_name;
 
         }
-
 
     let matrixData = JSON.parse(localStorage.getItem("matrixDetails"));
     if(matrixData)

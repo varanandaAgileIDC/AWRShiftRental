@@ -26,6 +26,7 @@ export class EditProfilePage {
         if(loginDB)
         {
 
+          debugger
           this.users = loginDB["userdata"];
 
         }
